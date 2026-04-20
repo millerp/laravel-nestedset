@@ -1,5 +1,6 @@
 {
     "name": "kalnoy/nestedset",
+    "version": "6.0.6",
     "description": "Nested Set Model for Laravel 5.7 and up",
     "keywords": [
         "laravel",
@@ -33,7 +34,8 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "v5.0.x-dev"
+            "dev-master": "5.0.x-dev",
+            "dev-v6": "6.0.x-dev"
         },
         "laravel": {
             "providers": [
