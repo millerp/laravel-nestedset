@@ -13,16 +13,15 @@ class AncestorsRelation extends BaseRelation
      */
     public function addConstraints()
     {
-        if ( ! static::$constraints) return;
+        if (! static::$constraints) {
+            return;
+        }
 
         $this->query->whereAncestorOf($this->parent)
             ->applyNestedSetScope();
     }
 
     /**
-     * @param Model $model
-     * @param $related
-     *
      * @return bool
      */
     protected function matches(Model $model, $related)
@@ -31,9 +30,8 @@ class AncestorsRelation extends BaseRelation
     }
 
     /**
-     * @param QueryBuilder $query
-     * @param Model $model
-     *
+     * @param  QueryBuilder  $query
+     * @param  Model  $model
      * @return void
      */
     protected function addEagerConstraint($query, $model)
@@ -42,11 +40,6 @@ class AncestorsRelation extends BaseRelation
     }
 
     /**
-     * @param $hash
-     * @param $table
-     * @param $lft
-     * @param $rgt
-     *
      * @return string
      */
     protected function relationExistenceCondition($hash, $table, $lft, $rgt)

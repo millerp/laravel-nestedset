@@ -1,12 +1,15 @@
 <?php
 
-class DuplicateCategory extends \Illuminate\Database\Eloquent\Model
+use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\NodeTrait;
+
+class DuplicateCategory extends Model
 {
-    use \Kalnoy\Nestedset\NodeTrait;
+    use NodeTrait;
 
     protected $table = 'categories';
 
-    protected $fillable = [ 'name' ];
+    protected $fillable = ['name'];
 
     public $timestamps = false;
 }

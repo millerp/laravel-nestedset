@@ -16,17 +16,19 @@ class Collection extends BaseCollection
      */
     public function linkNodes()
     {
-        if ($this->isEmpty()) return $this;
+        if ($this->isEmpty()) {
+            return $this;
+        }
 
         $groupedNodes = $this->groupBy($this->first()->getParentIdName());
 
         /** @var NodeTrait|Model $node */
         foreach ($this->items as $node) {
-            if ( ! $node->getParentId()) {
+            if (! $node->getParentId()) {
                 $node->setRelation('parent', null);
             }
 
-            $children = $groupedNodes->get($node->getKey(), [ ]);
+            $children = $groupedNodes->get($node->getKey(), []);
 
             /** @var Model|NodeTrait $child */
             foreach ($children as $child) {
@@ -46,8 +48,7 @@ class Collection extends BaseCollection
      *
      * If `$root` is provided, the tree will contain only descendants of that node.
      *
-     * @param mixed $root
-     *
+     * @param  mixed  $root
      * @return Collection
      */
     public function toTree($root = false)
@@ -58,7 +59,7 @@ class Collection extends BaseCollection
 
         $this->linkNodes();
 
-        $items = [ ];
+        $items = [];
 
         $root = $this->getRootNodeId($root);
 
@@ -73,8 +74,7 @@ class Collection extends BaseCollection
     }
 
     /**
-     * @param mixed $root
-     *
+     * @param  mixed  $root
      * @return int
      */
     protected function getRootNodeId($root = false)
@@ -106,15 +106,16 @@ class Collection extends BaseCollection
      * Build a list of nodes that retain the order that they were pulled from
      * the database.
      *
-     * @param bool $root
-     *
+     * @param  bool  $root
      * @return static
      */
     public function toFlatTree($root = false)
     {
         $result = new static;
 
-        if ($this->isEmpty()) return $result;
+        if ($this->isEmpty()) {
+            return $result;
+        }
 
         $groupedNodes = $this->groupBy($this->first()->getParentIdName());
 
@@ -124,9 +125,7 @@ class Collection extends BaseCollection
     /**
      * Flatten a tree into a non recursive array.
      *
-     * @param Collection $groupedNodes
-     * @param mixed $parentId
-     *
+     * @param  mixed  $parentId
      * @return $this
      */
     protected function flattenTree(self $groupedNodes, $parentId)
@@ -139,5 +138,4 @@ class Collection extends BaseCollection
 
         return $this;
     }
-
 }

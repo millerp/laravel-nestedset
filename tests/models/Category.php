@@ -1,12 +1,13 @@
 <?php
 
-use \Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model {
+class Category extends Model
+{
+    use \Kalnoy\Nestedset\NodeTrait, SoftDeletes;
 
-    use \Illuminate\Database\Eloquent\SoftDeletes, \Kalnoy\Nestedset\NodeTrait;
-
-    protected $fillable = array('name', 'parent_id');
+    protected $fillable = ['name', 'parent_id'];
 
     public $timestamps = false;
 

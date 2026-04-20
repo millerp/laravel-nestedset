@@ -1,10 +1,13 @@
 <?php
 
+use Illuminate\Database\Capsule\Manager;
+use Illuminate\Events\Dispatcher;
+
 include __DIR__.'/vendor/autoload.php';
 
-$capsule = new \Illuminate\Database\Capsule\Manager;
-$capsule->addConnection([ 'driver' => 'sqlite', 'database' => ':memory:', 'prefix' => 'prfx_' ]);
-$capsule->setEventDispatcher(new \Illuminate\Events\Dispatcher);
+$capsule = new Manager;
+$capsule->addConnection(['driver' => 'sqlite', 'database' => ':memory:', 'prefix' => 'prfx_']);
+$capsule->setEventDispatcher(new Dispatcher);
 $capsule->bootEloquent();
 $capsule->setAsGlobal();
 
