@@ -46,7 +46,6 @@ trait NodeTrait
     public static function bootNodeTrait()
     {
         static::whenBooted(function () {
-
             static::saving(function ($model) {
                 return $model->callPendingAction();
             });
@@ -69,7 +68,6 @@ trait NodeTrait
                     $model->restoreDescendants(static::$deletedAt);
                 });
             }
-
         });
     }
 
